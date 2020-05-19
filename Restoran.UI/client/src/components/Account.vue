@@ -23,7 +23,7 @@
 						<div class="col-12 pb-2 mb-2 border-bottom" v-if="userInfo.userImage != '' && userInfo.userImage != null">
 							<div class="row">
 								<span class="col-12 text-left userImage">
-									<img v-bind:src='"http://localhost:4001/images/" + userInfo.userImage'/>
+									<img v-bind:src="`${apiUrl}/images/${userInfo.userImage}`"/>
 								</span>
 							</div>
 						</div>
@@ -70,7 +70,8 @@
 		},
 		data() {
 			return {
-				userInfo:[]
+				userInfo:[],
+				apiUrl: this.$store.state.apiUrl
 			}
 		},
 		methods:{

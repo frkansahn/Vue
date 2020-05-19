@@ -160,7 +160,7 @@
 				}).catch(err => {
 					console.log(err);
 				});
-				// axios.get('http://localhost:4001/api/v1/doviz/getTCMB').then(response => {
+				// axios.get(this.$store.state.apiUrl + '/api/v1/doviz/getTCMB').then(response => {
 				// 	console.log(response.data.response['Tarih_Date']['Currency']);
 				// }).catch(err => {
 				// 	console.log(err);
