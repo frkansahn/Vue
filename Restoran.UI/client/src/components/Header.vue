@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-lg-2 col-sm-4 col-6 pl-xl-0">
 					<router-link :to="{path:'/'}" class="col-12 pl-0 float-left">
-						<img class="col-9 float-left pl-0" src="/images/logo.png">
+						<img class="col-9 float-left pl-0" :src="`${imageUrl}/logo.png`">
 					</router-link>	
 				</div>
 				<div class="col-lg-8 d-none d-lg-block my-auto" v-if="isMobile == false">
@@ -32,28 +32,27 @@
 						</li>
 					</ul>					
 				</div>
-				<div class="col-lg-2 d-none d-lg-block pr-0" v-if="isMobile == false">
+				<div class="col-3 offset-3 d-lg-none d-flex align-items-center" @click="mobileMenu = !mobileMenu">
+					<img class="py-4 px-2" :src="`${imageUrl}/menu.png`">
+				</div>
+				<div class="col-lg-2 pr-0">
 					<div @click="goAllOrder('allTableOrder')" class="sepet" :title="`Masalara servis edilmemiş ${this.$store.state.cartCount} adet sipariş bulunmaktadır.`">
 						<div class="lds-ripple" v-if="this.$store.state.cartCount > 0"><div></div><div></div></div>
 						<i class="icon-cart">
 							<span>{{this.$store.state.cartCount}}</span>
 						</i>						
 					</div>
-					<div class="cartDetail">
+					<div class="cartDetail d-none d-lg-block">
 						<div class="row">
 							<div class="col-12">
 								
 							</div>
 						</div>
 					</div>
-					<span class="username" v-bind:data-username="name">{{name}}</span>
-					<span class="exit" @click="signOut">Çıkış Yap</span>
+					<span class="username d-none d-lg-block" v-bind:data-username="name">{{name}}</span>
+					<span class="exit d-none d-lg-block" @click="signOut">Çıkış Yap</span>
 				</div>
 
-				<div class="col-sm-3 col-2 offset-4 d-lg-none d-flex align-items-center" @click="mobileMenu = !mobileMenu">
-					<img class="py-4 px-2" src="/images/menu.png">
-				</div>
-      
 				<div class="col-12" v-if="isMobile == true">
 					<div class="row">
 						<transition name="slide">
@@ -134,22 +133,23 @@
 				isMobile:false,
 				mobileMenu:false,
 				orders:[],
-				scroll: window.scrollY > 150 ? true : false
+				scroll: window.scrollY > 150 ? true : false,
+				imageUrl:this.$store.state.imageUrl
 			}
 		},
 		props:{
 			operationSuccessfull: {
-		      type: Boolean,
-		      default: false
-		    }
+				type: Boolean,
+				default: false
+			}
 		},
 		methods:{
 			goAllOrder(id){
 				if(window.location.pathname == "/")
 				{
 					$('html,body').animate({
-				        scrollTop: $("#" + id).offset().top - 10
-				    }, 'slow');
+						scrollTop: $("#" + id).offset().top - 10
+					}, 'slow');
 				}				
 			},
 			signOut(){
@@ -160,8 +160,8 @@
 			},
 			fn_toTop(){
 				$('html,body').stop().animate({
-			        scrollTop: 0
-			    }, 'slow', 'swing');
+					scrollTop: 0
+				}, 'slow', 'swing');
 			}
 		},
 		created(){
@@ -198,17 +198,17 @@
 		watch:{
 		},
 		mounted(){
-	     	let _this= this;
-	        $(window).scroll(
-	            function (event) {
-	               	if($(window).scrollTop()>150){
-	                    _this.scroll = true;
-	                }else{
-	                    _this.scroll = false;
-	            }
-	            }
-	        );
-	    }
+			let _this= this;
+			$(window).scroll(
+				function (event) {
+					if($(window).scrollTop()>150){
+						_this.scroll = true;
+					}else{
+						_this.scroll = false;
+					}
+				}
+				);
+		}
 	}
 </script>
 <style scoped>
@@ -219,17 +219,17 @@
 	}
 
 	.mobileMenu {
-	    position: fixed;
-	    background: #fd8824;
-	    top: 0;
-	    right: 0;
-	    height: 100%;
-	    z-index: 9999;
-	    color:#ffffff;
+		position: fixed;
+		background: #fd8824;
+		top: 0;
+		right: 0;
+		height: 100%;
+		z-index: 99999;
+		color:#ffffff;
 	}
 
 	#header .mobileMenu ul li {
-	    padding: 10px;
+		padding: 10px;
 	}
 
 	.menuLink
@@ -241,31 +241,34 @@
 	.username
 	{
 		position: absolute;
-	    left: -10px;
-	    top: -20px;
-	    font-size: 12px;
-	    font-weight: 600;
-	    line-height: 60px;
-	    color: #f97300;
-	    transform: translateY(0px);
-	    cursor: pointer;
-	    transition: all .5s ease;
+		left: -10px;
+		top: -20px;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 60px;
+		color: #f97300;
+		transform: translateY(0px);
+		cursor: pointer;
+		transition: all .5s ease;
 	}
 
 	.mobileMenu .exit {
-	    color: #000000;
-	    background: #fd8824;
+		color: #000000;
+		background: #fd8824;
+		position: static;
+		padding: 0;
+		font-size: 14px;
 	}
 
 	.username:before {
-	    content: attr(data-username);
-	    position: absolute;
-	    top: 50px;
+		content: attr(data-username);
+		position: absolute;
+		top: 50px;
 	}
 
 	.username:hover {
-	    transform: translateY(-50px);
-	    transition: all .3s ease;
+		transform: translateY(-50px);
+		transition: all .3s ease;
 	}
 
 	#header:before {
@@ -296,12 +299,12 @@
 	.overlayMenu
 	{
 		position: fixed;
-	    top: 0;
-	    left: 0;
-	    right: 0;
-	    bottom: 0;
-	    background: #000000b0;
-	    z-index: 98;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #000000b0;
+		z-index: 98;
 	}
 
 	.exit {
@@ -321,15 +324,37 @@
 	}
 
 	.menuClose {
-	    font-size: 20px;
-	    color: #ffffff;
-	    background: #000000;
-	    padding: 12px 24px;
+		font-size: 20px;
+		color: #ffffff;
+		background: #000000;
+		padding: 12px 24px;
 	}
 
 	.menuClose span:last-child {
-	    font-size: 30px;
-	    line-height: normal;
-	    padding: 0 10px;
+		font-size: 40px;
+		line-height: 26px;
+		padding: 0;
+	}
+
+	@media screen and (max-width: 540px)
+	{	
+		#header {
+			height: 100px;
+		}
+
+		#header:before{
+			top: 30px;
+		}
+	}
+
+	@media screen and (max-width: 360px)
+	{
+		#header {
+			height: 80px;
+		}
+
+		#header:before{
+			top: 15px;
+		}
 	}
 </style>

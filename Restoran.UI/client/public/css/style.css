@@ -2341,6 +2341,7 @@ pre code {
     background: #000000;
     border-radius: 40px;
     cursor: pointer;
+    z-index: 9999;
 }
 
 .sepet span {

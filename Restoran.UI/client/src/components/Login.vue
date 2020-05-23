@@ -1,9 +1,9 @@
 <template>
-	<div class="loginBg">
+	<div class="loginBg" :style="`background: url(${imageUrl}/loginBg.jpg) no-repeat top left;`">
 		<div class="login">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4 col-11 offset-md-7 px-5 pb-4 pt-2 rounded border bg-white">
+					<div class="col-md-4 col-10 offset-1 offset-md-7 px-5 pb-4 pt-2 rounded border bg-white">
 						<div class="col-12 pt-3 pb-2 px-2">
 							<h5 class="text-left mb-0">Üye Girişi</h5>
 						</div>
@@ -35,7 +35,8 @@
 		data(){
 			return{
 				username:'',
-				password:''
+				password:'',
+				imageUrl:this.$store.state.imageUrl
 			}
 		},
 		methods:{
@@ -80,13 +81,12 @@
 
 	.loginBg
 	{
-		background: url(/images/loginBg.jpg) no-repeat top left;
 	    position: absolute;
 	    top: 0;
 	    left: 0;
 	    right: 0;
 	    bottom: 0;
-	    background-size: cover;
+	    background-size: cover !important;
 	}
 
 	.btn-login
@@ -100,5 +100,26 @@
 	{
 		background: #f59406;
 		border: 1px solid #f59406;
+	}
+
+	@media screen and (max-width:768px)
+	{
+		.login {
+		    position: static;
+		}
+		
+		.loginBg {
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		}
+	}
+
+	@media screen and (max-width:540px)
+	{
+		.login
+		{
+			top: 33%;
+		}
 	}
 </style>

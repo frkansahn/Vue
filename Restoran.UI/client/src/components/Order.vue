@@ -11,7 +11,7 @@
 				<div class="col-lg-3 col-sm-4 col-6 p-2" v-for="table in tables">
 					<div class="col-12 p-0 position-relative orderTable">
 						<router-link class="col-12 border rounded py-5 text-center" :class="{dolu:table.table_status == 1}" :to="'/masa/' + table.table_id">
-							<img src="/images/desk.png" alt="Desk">{{table.table_name}}						
+							<img :src="`${imageUrl}/desk.png`" alt="Desk">{{table.table_name}}						
 						</router-link>
 						<span class="editTable" title="Masa Düzenle" @click="editTableShow(table)" v-if="isAdmin"></span>
 					</div>
@@ -83,7 +83,8 @@
 				table_id:'',
 				tableName:'',
 				tableStatus:'',
-				isAdmin:false
+				isAdmin:false,
+				imageUrl:this.$store.state.imageUrl
 			}
 		},
 		methods:{
@@ -249,5 +250,26 @@
 	#masa .orderTable:hover .editTable
 	{
 		display: block;
+	}
+
+	@media screen and (max-width: 768px)
+	{
+		.editTable
+		{
+			display: block;
+			width: 25px;
+    		height: 25px;
+		}
+	}
+
+	@media screen and (max-width: 540px)
+	{
+		#masa a {
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    flex-direction: column;
+		    padding: 10px !important;
+		}
 	}
 </style>

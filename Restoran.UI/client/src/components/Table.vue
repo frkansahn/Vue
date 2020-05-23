@@ -146,7 +146,7 @@
 					<div class="popupContent col-11 h-95">
 						<div class="row mb-3">
 							<div class="col-12 px-4 mt-4">
-								<div class="row">
+								<div class="row" id="addCartCategory">
 									<div class="float-left p-0 mr-2 btn btn-dark category" ref="category" v-for="(category,index) in categories" :class="{ 'active': index === 0 }" v-bind:id="'category'+category.category_id" @click="fn_selectedCategory(category.category_id)">
 										<span class="float-left p-2">{{category.category_name}}</span>
 									</div>
@@ -154,7 +154,7 @@
 							</div>
 							<div class="col-12">
 								<div class="row">
-									<div class="col-2 px-4 mt-4" v-for="product in products" v-if="product.category_id == selectedCategory && product.product_isPublish == 1">
+									<div class="col-lg-2 col-md-3 col-sm-6 col-12 px-4 mt-4" v-for="product in products" v-if="product.category_id == selectedCategory && product.product_isPublish == 1">
 										<div class="row border rounded">
 											<div class="col-12 proImg">
 												<router-link :to="'/productDetail/' + product.product_id">
@@ -338,7 +338,7 @@
 				  dotsClass: 'slick-dots custom-dot-class',
 				  edgeFriction: 0.35,
 				  infinite: true,
-				  autoplaySpeed: 2000,
+				  autoplaySpeed: 3000,
 				  slidesToShow: 1,
 				  slidesToScroll: 1,
 				  initialSlide: 4,
@@ -774,5 +774,18 @@
 		animation-timing-function: ease-in-out;
 		-webkit-animation-iteration-count: 1;
 		animation-iteration-count: 1;
+	}
+
+	@media screen and (max-width: 768px)
+	{
+		#addCartCategory
+		{
+			display: flex;
+		    overflow: auto;
+		    align-items: center;
+		    white-space: nowrap;
+		    margin: 10px -15px 0 -15px;
+		    flex-wrap: inherit;
+		}
 	}
 </style>

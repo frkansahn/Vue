@@ -13,7 +13,7 @@ export default new Vuex.Store({
 		operationSuccessfull:false,
 		cartCount:0,
 		apiUrl:'https://furkan.t-soft.club:44001',
-		imageUrl:''
+		imageUrl:'/images'
 	},
 	mutations: {
 		newRoleStatus(state , newStatus)

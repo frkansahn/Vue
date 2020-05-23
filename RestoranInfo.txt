@@ -1,0 +1,31 @@
+<------------ SSH Info ----------------->
+
+https://furkan.t-soft.club/
+sftp host: furkan.t-soft.club
+sftp port: 2243
+sftp user: root
+sftp pass: hxhxRCHg7oFNZN8NQt
+
+
+</-------------- SSH Info --------------->
+
+<--------------- Database Info ---------->
+
+host: http://furkan.t-soft.club/phpTsoft
+db: furkan_db
+
+user: furkan_db
+
+pass: hxhxRNZCHg7oFN8NQt
+
+
+
+</-------------- Database Info ---------->
+
+<--------------- Certificate Info ---------->
+
+/etc/nginx/ssl/certs/furkan.t-soft.club.crt 
+
+/etc/nginx/ssl/private/furkan.t-soft.club.key
+
+</--------------- Certificate Info ---------->

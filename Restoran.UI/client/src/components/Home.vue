@@ -8,43 +8,43 @@
 						<div class="col-xl-12 linkler mt-3">
 							<div class="row">
 								<div class="col-lg-4 col-6 p-2 mobil-p-2">
-									<router-link class="py-5 btn-success col-12 d-block rounded text-center" :to="{path:'/siparisler'}"><img src="/images/order.png" alt="Siparişler">Siparişler</router-link>
+									<router-link class="py-5 btn-success col-12 d-block rounded text-center" :to="{path:'/siparisler'}"><img :src="`${imageUrl}/order.png`" alt="Siparişler">Siparişler</router-link>
 								</div>
 
 								<div class="col-lg-4 col-6 p-2 mobil-p-2" v-if="this.$store.state.roleStatus == 1">
-									<router-link class="py-5 btn-primary col-12 d-block rounded text-center" :to="{path:'/cari'}"><img src="/images/current.png" alt="Cari">Cari Hesaplar</router-link>
+									<router-link class="py-5 btn-primary col-12 d-block rounded text-center" :to="{path:'/cari'}"><img :src="`${imageUrl}/current.png`" alt="Cari">Cari Hesaplar</router-link>
 								</div>
 
 								<div class="col-lg-4 col-6 p-2 mobil-p-2">
-									<router-link class="py-5 btn-secondary col-12 d-block rounded text-center" :to="{path:'/hesap'}"><img src="/images/hesap.png" alt="Hesap">Hesap</router-link>
+									<router-link class="py-5 btn-secondary col-12 d-block rounded text-center" :to="{path:'/hesap'}"><img :src="`${imageUrl}/hesap.png`" alt="Hesap">Hesap</router-link>
 								</div>
 
 								<div class="col-lg-4 col-6 p-2 mobil-p-2" v-if="this.$store.state.roleStatus == 1">
-									<router-link class="py-5 btn-default col-12 d-block rounded text-center" :to="{path:'/rapor'}"><img src="/images/dashboard.png" alt="Report">Raporlar</router-link>
+									<router-link class="py-5 btn-default col-12 d-block rounded text-center" :to="{path:'/rapor'}"><img :src="`${imageUrl}/dashboard.png`" alt="Report">Raporlar</router-link>
 								</div>
 
 								<div class="col-lg-4 col-6 p-2 mobil-p-2" v-if="this.$store.state.roleStatus == 1">
-									<router-link class="py-5 btn-dark col-12 d-block rounded text-center" :to="{path:'/product'}"><img src="/images/product.png" alt="Product">Ürün</router-link>
+									<router-link class="py-5 btn-dark col-12 d-block rounded text-center" :to="{path:'/product'}"><img :src="`${imageUrl}/product.png`" alt="Product">Ürün</router-link>
 								</div>
 
 								<div class="col-lg-4 col-6 p-2 mobil-p-2" v-if="this.$store.state.roleStatus == 1">
-									<router-link class="py-5 btn-entegrasyon col-12 d-block rounded text-center" :to="{path:'/integration'}"><img src="/images/product.png" alt="Product">Entegrasyon</router-link>
+									<router-link class="py-5 btn-entegrasyon col-12 d-block rounded text-center" :to="{path:'/integration'}"><img :src="`${imageUrl}/product.png`" alt="Product">Entegrasyon</router-link>
 								</div>
 
 								<div class="col-lg-4 col-6 p-2 mobil-p-2" v-if="this.$store.state.roleStatus == 1">
-									<router-link  class="py-5 btn-info col-12 d-block rounded text-center" :to="{path:'/about'}"><img src="/images/about.png" alt="About">Hakkında</router-link>
+									<router-link  class="py-5 btn-info col-12 d-block rounded text-center" :to="{path:'/about'}"><img :src="`${imageUrl}/about.png`" alt="About">Hakkında</router-link>
 								</div>
 
 								<div class="col-lg-4 col-6 p-2 mobil-p-2">									
-									<a class="py-5 btn-doviz col-12 d-block rounded text-center" @click="fn_GoExchangeTable()"><img src="/images/exchange.png" alt="Exchange">Döviz Tablosu</a>
+									<a class="py-5 btn-doviz col-12 d-block rounded text-center" @click="fn_GoExchangeTable()"><img :src="`${imageUrl}/exchange.png`" alt="Exchange">Döviz Tablosu</a>
 								</div>
 
 								<div class="col-lg-4 col-6 p-2 mobil-p-2">									
-									<router-link class="py-5 btn-warning col-12 d-block rounded text-center" :to="{path:'/help'}"><img src="/images/help.png" alt="Help">Yardım</router-link>
+									<router-link class="py-5 btn-warning col-12 d-block rounded text-center" :to="{path:'/help'}"><img :src="`${imageUrl}/help.png`" alt="Help">Yardım</router-link>
 								</div>
 								
 								<div class="col-lg-4 col-6 p-2 mobil-p-2">									
-									<a class="py-5 btn-danger col-12 d-block rounded text-center" @click="signOut"><img src="/images/logout.png" alt="Logout">Çıkış</a>
+									<a class="py-5 btn-danger col-12 d-block rounded text-center" @click="signOut"><img :src="`${imageUrl}/logout.png`" alt="Logout">Çıkış</a>
 								</div>
 							</div>
 						</div>
@@ -57,18 +57,22 @@
 									<table class="table table-responsive-md">
 										<thead>
 											<tr>
+												<th class="text-center">Sipariş</th>
 												<th class="text-left">Ürün Adı</th>
 												<th>Masa</th>
 												<th>Adet</th>
 												<th>Açıklama</th>
 												<th class="text-center">Birim Fiyat</th>
-												<th class="text-center">Toplam Fiyat</th>
-												<th class="text-center">Sipariş Durumu</th>
+												<th class="text-center">Toplam Fiyat</th>												
 											</tr>
 											
 										</thead>
 										<tbody>
 											<tr v-for="detail in order">
+												<td class="text-center">
+													<span class="notPublish" v-if="detail.order_placed == 0" title="Sipariş masaya teslim edilmedi :(" @click="fn_orderDelivery(detail.order_id , 1)">&times;</span>
+													<span class="publish" v-else title="Sipariş teslim edildi :)" @click="fn_orderDelivery(detail.order_id , 0)">✓</span>
+												</td>
 												<td class="text-left">
 													{{detail.product_name}}
 												</td>
@@ -86,11 +90,7 @@
 												</td>
 												<td class="text-center">
 													{{detail.order_price | formatPrice}}
-												</td>
-												<td class="text-center">
-													<span class="notPublish" v-if="detail.order_placed == 0" title="Sipariş masaya teslim edilmedi :(" @click="fn_orderDelivery(detail.order_id , 1)">&times;</span>
-													<span class="publish" v-else title="Sipariş teslim edildi :)" @click="fn_orderDelivery(detail.order_id , 0)">✓</span>
-												</td>
+												</td>												
 											</tr>
 										</tbody>
 										<tfoot>
@@ -108,7 +108,7 @@
 								<div class="col-12 mb-2 kurBilgileri text-center">
 									Kur Bilgileri
 								</div>
-								<div class="col-12 doviz mt-4 pt-0 overflow-hidden" v-show="!isLoadingDoviz">						
+								<div class="col-12 doviz mt-4 pt-0" v-show="!isLoadingDoviz">						
 									<table class="table col-12" v-html="dovizHtml" id="exchangeTable" title="Kur bilgileri YapıKredi bankasının bilgileridir.">
 
 									</table>
@@ -142,7 +142,8 @@
 				order:[],
 				dovizHtml:'',
 				allTableTotalPrice:'',
-				isLoadingDoviz:true
+				isLoadingDoviz:true,
+				imageUrl:this.$store.state.imageUrl
 			}
 		},
 		methods:{
@@ -172,7 +173,7 @@
 			},
 			fn_GoExchangeTable(){
 				$('html,body').animate({
-				   scrollTop: $("#exchangeTable").offset().top - 10
+					scrollTop: $("#exchangeTable").offset().top - 10
 				}, 'slow');
 			},
 			getTableDetail(){
@@ -216,7 +217,7 @@
 									'',
 									'İşlem gerçekleştirilemedi.',
 									'error'
-								);
+									);
 							}
 
 						}).catch(err => {
@@ -237,13 +238,12 @@
 	.doviz
 	{
 		padding: 0;
+		overflow:auto;
 	}
 
 	.doviz table
 	{
 		background-image: linear-gradient(#3a408a, #6969ea);
-		max-height: 500px;
-		overflow-y: auto;
 		border-radius: 10px;
 		padding: 0;
 	}
@@ -271,13 +271,23 @@
 	}
 
 	.linkler a img {
-	    margin-right: 10px;
+		margin-right: 10px;
 	}
 
 	@media screen and (max-width:540px)
 	{
 		.linkler a {
-		    font-size: 18px;
+			font-size: 18px;
+			display: flex !important;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			padding: 20px 0 !important;
+		}
+
+		.linkler a img {
+			margin-right: 0;
+			margin-bottom: 5px;
 		}
 	}
 </style>
